@@ -1,15 +1,13 @@
 # The Docker image that will be used to build your app
 image: node:latest
-
 # Functions that should be executed before the build script is run
 before_script:
-  - npm install  # Installe les dépendances
-
+  - npm install
 pages:
   script:
-    - npm run build  # Compile ton site web (assure-toi d'avoir un script "build" dans ton package.json)
-    - mkdir .public  # Crée le dossier public
-    - cp -r dist/* public/  # Copie les fichiers construits dans le dossier public (assume que "dist" est le dossier de sortie)
+    - npm run build
+    - mkdir .public
+    - cp -r dist/* public/
   artifacts:
     paths:
       # The folder that contains the files to be exposed at the Page URL
