@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mickhail Kochiev - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0e14;
+            --bg-secondary: #111822;
+            --bg-card: #1a2332;
+            --accent-primary: #00ff9d;
+            --accent-secondary: #00d4ff;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --border-color: #2d3748;
+            --gradient-1: linear-gradient(135deg, #00ff9d 0%, #00d4ff 100%);
+            --gradient-2: linear-gradient(135deg, rgba(0, 255, 157, 0.1) 0%, rgba(0, 212, 255, 0.1) 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated background grid */
+        .background-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 157, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 157, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header & Navigation */
+        header {
+            padding: 2rem 0;
+            position: sticky;
+            top: 0;
+            background: rgba(10, 14, 20, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 600;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 400;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-1);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 0 6rem;
+            position: relative;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 4.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-text .highlight {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-weight: 300;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            animation: fadeInUp 0.8s ease 0.6s both;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--gradient-1);
+            color: var(--bg-primary);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 255, 157, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--accent-primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            animation: fadeInUp 0.8s ease 0.8s both;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-title .highlight {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 255, 157, 0.1);
+        }
+
+        .skill-category h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-icon {
+            width: 30px;
+            height: 30px;
+            background: var(--gradient-1);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--bg-primary);
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            padding: 0.4rem 1rem;
+            background: rgba(0, 255, 157, 0.1);
+            border: 1px solid rgba(0, 255, 157, 0.3);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--accent-primary);
+            font-family: 'IBM Plex Mono', monospace;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: rgba(0, 255, 157, 0.2);
+            border-color: var(--accent-primary);
+        }
+
+        /* Experience & Projects */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: var(--gradient-1);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -0.5rem;
+            top: 0;
+            width: 1rem;
+            height: 1rem;
+            background: var(--accent-primary);
+            border-radius: 50%;
+            border: 3px solid var(--bg-primary);
+            z-index: 2;
+        }
+
+        .timeline-content {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            border-color: var(--accent-primary);
+            transform: translateX(10px);
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .timeline-date {
+            font-family: 'IBM Plex Mono', monospace;
+            color: var(--accent-primary);
+            font-size: 0.9rem;
+        }
+
+        .timeline-subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+
+        .timeline-description {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 255, 157, 0.1);
+        }
+
+        .project-header {
+            padding: 2rem;
+            background: var(--gradient-2);
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .project-body {
+            padding: 2rem;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .project-tag {
+            padding: 0.3rem 0.8rem;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--accent-secondary);
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            border-color: var(--accent-primary);
+            transform: translateX(10px);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .contact-details h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .contact-details a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-details a:hover {
+            color: var(--accent-primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.5rem;
+        }
+
+        .social-link:hover {
+            background: var(--gradient-1);
+            border-color: var(--accent-primary);
+            color: var(--bg-primary);
+            transform: translateY(-5px);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 0;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .projects-grid,
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-grid"></div>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">&lt;MK/&gt;</div>
+                <ul class="nav-links">
+                    <li><a href="#apropos">À propos</a></li>
+                    <li><a href="#competences">Compétences</a></li>
+                    <li><a href="#experience">Expérience</a></li>
+                    <li><a href="#projets">Projets</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Mickhail <span class="highlight">Kochiev</span></h1>
+                        <p class="subtitle">Étudiant en BUT Informatique</p>
+                        <p>Spécialisé en déploiement d'applications et sécurisation des communications. Passionné par l'administration système, les réseaux et la cybersécurité.</p>
+                        <div class="cta-buttons">
+                            <a href="#contact" class="btn btn-primary">Me contacter</a>
+                            <a href="https://mickhailkchv.github.io/Portfolio/" target="_blank" class="btn btn-secondary">GitHub Portfolio</a>
+                        </div>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-card">
+                            <div class="stat-number">3ᵉ</div>
+                            <div class="stat-label">Année de BUT</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">6+</div>
+                            <div class="stat-label">Projets réalisés</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">4</div>
+                            <div class="stat-label">Langues parlées</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- À propos -->
+        <section id="apropos">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">À propos <span class="highlight">de moi</span></h2>
+                    <p class="section-subtitle">Autonome, rigoureux et curieux</p>
+                </div>
+                <div class="contact-content">
+                    <div>
+                        <p style="font-size: 1.1rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 2rem;">
+                            Étudiant en 3ᵉ année de BUT Informatique à l'IUT A de Lille, parcours <strong style="color: var(--accent-primary);">Déploiement d'applications communicantes et sécurisation des communications</strong>.
+                        </p>
+                        <p style="font-size: 1.1rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 2rem;">
+                            Je recherche un <strong style="color: var(--accent-primary);">stage en administration systèmes ou réseaux</strong>. J'aime travailler sur des projets qui ont du sens, avec une attention particulière portée à l'organisation, à la clarté du code et à l'efficacité des solutions.
+                        </p>
+                        <p style="font-size: 1.1rem; color: var(--text-secondary); line-height: 1.8;">
+                            Au-delà de l'informatique, je suis <strong style="color: var(--accent-primary);">arbitre national de lutte</strong> (catégorie 3) et <strong style="color: var(--accent-primary);">réserviste opérationnel</strong> à la Gendarmerie Nationale depuis 2025.
+                        </p>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">🎓</div>
+                            <div class="contact-details">
+                                <h3>Formation</h3>
+                                <p>BUT Informatique - IUT A Lille<br>Parcours B (Depuis 2023)</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">🥋</div>
+                            <div class="contact-details">
+                                <h3>Engagement</h3>
+                                <p>Arbitre National de Lutte (Depuis 2017)<br>Réserviste Gendarmerie (Depuis 2025)</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">🌍</div>
+                            <div class="contact-details">
+                                <h3>Langues</h3>
+                                <p>Français & Russe (natif)<br>Anglais (C1) • Allemand (B2)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Compétences -->
+        <section id="competences">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Compétences <span class="highlight">techniques</span></h2>
+                    <p class="section-subtitle">Administration système, réseaux et sécurité</p>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3><span class="skill-icon">🐧</span> Systèmes & Administration</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Linux</span>
+                            <span class="skill-tag">Admin système</span>
+                            <span class="skill-tag">Bash</span>
+                            <span class="skill-tag">Automatisation</span>
+                            <span class="skill-tag">CRON</span>
+                            <span class="skill-tag">Processus</span>
+                            <span class="skill-tag">Droits utilisateurs</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3><span class="skill-icon">🌐</span> Réseaux & Routage</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">IPv4 / IPv6</span>
+                            <span class="skill-tag">Routage IP</span>
+                            <span class="skill-tag">RIP / OSPF</span>
+                            <span class="skill-tag">VLAN</span>
+                            <span class="skill-tag">NAT</span>
+                            <span class="skill-tag">Cisco</span>
+                            <span class="skill-tag">DHCP / Ethernet</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3><span class="skill-icon">🔒</span> Sécurité réseau</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">SSH / TLS</span>
+                            <span class="skill-tag">GnuPG</span>
+                            <span class="skill-tag">Pare-feu</span>
+                            <span class="skill-tag">Sécurisation services</span>
+                            <span class="skill-tag">Gestion menaces</span>
+                            <span class="skill-tag">DDoS Detection</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3><span class="skill-icon">📦</span> Conteneurisation & Déploiement</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">Podman</span>
+                            <span class="skill-tag">Docker Compose</span>
+                            <span class="skill-tag">Traefik</span>
+                            <span class="skill-tag">VirtualBox</span>
+                            <span class="skill-tag">Scripting</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3><span class="skill-icon">💾</span> Bases de données</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">PostgreSQL</span>
+                            <span class="skill-tag">SQL</span>
+                            <span class="skill-tag">MCD / MLD</span>
+                            <span class="skill-tag">Power AMC</span>
+                            <span class="skill-tag">Microsoft Access</span>
+                            <span class="skill-tag">CSV</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3><span class="skill-icon">⚡</span> Programmation avancée</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">P4-16</span>
+                            <span class="skill-tag">Intel Tofino</span>
+                            <span class="skill-tag">Java / JavaFX</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Git / GitHub</span>
+                            <span class="skill-tag">UML / POO</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Expérience -->
+        <section id="experience">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Expérience <span class="highlight">professionnelle</span></h2>
+                    <p class="section-subtitle">Stages et engagements</p>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <div>
+                                    <h3 class="timeline-title">Stagiaire R&D Réseau – P4 / Intel Tofino</h3>
+                                    <p class="timeline-subtitle">AGH University of Cracow, Pologne</p>
+                                </div>
+                                <span class="timeline-date">AVR 2025 - JUIL 2025</span>
+                            </div>
+                            <p class="timeline-description">
+                                Adaptation d'un programme P4 pour l'architecture Intel Tofino (WEDGE-100BF-32x) afin de détecter des attaques DDoS via des structures de données probabilistes (sketches comme HyperLogLog). Travail sur la surveillance du trafic réseau et l'optimisation des performances.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <div>
+                                    <h3 class="timeline-title">Projet e-commerce (freelance)</h3>
+                                    <p class="timeline-subtitle">sticks-lillois.com</p>
+                                </div>
+                                <span class="timeline-date">AVR 2025 - JUIL 2025</span>
+                            </div>
+                            <p class="timeline-description">
+                                Conception et exploitation d'une infrastructure serveur Linux exposée sur Internet, avec contraintes de disponibilité, sécurité et maintenance. Gestion complète du déploiement et de la sécurisation des services.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <div>
+                                    <h3 class="timeline-title">Réserviste opérationnel</h3>
+                                    <p class="timeline-subtitle">Gendarmerie Nationale</p>
+                                </div>
+                                <span class="timeline-date">DEPUIS 2025</span>
+                            </div>
+                            <p class="timeline-description">
+                                Participation à des missions de sécurité publique et d'assistance. Développement de compétences en gestion du stress, leadership, rigueur et travail en équipe dans des environnements exigeants.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <div>
+                                    <h3 class="timeline-title">Arbitre National de Lutte Libre & Gréco-romaine</h3>
+                                    <p class="timeline-subtitle">Fédération Française de Lutte & Disciplines Associées</p>
+                                </div>
+                                <span class="timeline-date">DEPUIS 2017</span>
+                            </div>
+                            <p class="timeline-description">
+                                Pratiquant la lutte depuis l'enfance, j'ai atteint le niveau d'arbitre national (catégorie 3) grâce à mon engagement et ma progression continue. Développement d'aptitudes en prise de décision rapide et gestion de situations sous pression.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projets -->
+        <section id="projets">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Projets <span class="highlight">académiques</span></h2>
+                    <p class="section-subtitle">Réalisations 2024-2025</p>
+                </div>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3 class="project-title">Déploiement & Sécurité réseau</h3>
+                            <p class="project-subtitle">Infrastructure automatisée</p>
+                        </div>
+                        <div class="project-body">
+                            <p class="project-description">
+                                Service conteneurisé automatisé avec sécurité réseau. Utilisation de scripts Bash, intégration Docker et mise en place d'un reverse proxy sécurisé avec Traefik.
+                            </p>
+                            <div class="project-tags">
+                                <span class="project-tag">Docker</span>
+                                <span class="project-tag">Traefik</span>
+                                <span class="project-tag">Bash</span>
+                                <span class="project-tag">Sécurité</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3 class="project-title">Analyse de données Parcoursup</h3>
+                            <p class="project-subtitle">Big Data & Statistiques</p>
+                        </div>
+                        <div class="project-body">
+                            <p class="project-description">
+                                Analyse statistique des données Parcoursup 2023 avec PostgreSQL. Extraction et analyse de données massives via des requêtes SQL complexes.
+                            </p>
+                            <div class="project-tags">
+                                <span class="project-tag">PostgreSQL</span>
+                                <span class="project-tag">SQL</span>
+                                <span class="project-tag">CSV</span>
+                                <span class="project-tag">Statistiques</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3 class="project-title">Calculateur d'itinéraires intelligent</h3>
+                            <p class="project-subtitle">Application Java multi-critères</p>
+                        </div>
+                        <div class="project-body">
+                            <p class="project-description">
+                                Application Java/JavaFX permettant de calculer des itinéraires selon plusieurs critères : distance, temps, impact écologique. Modélisation UML complète et architecture POO.
+                            </p>
+                            <div class="project-tags">
+                                <span class="project-tag">Java</span>
+                                <span class="project-tag">JavaFX</span>
+                                <span class="project-tag">UML</span>
+                                <span class="project-tag">POO</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3 class="project-title">Conception BDD Garage</h3>
+                            <p class="project-subtitle">Système de gestion automobile</p>
+                        </div>
+                        <div class="project-body">
+                            <p class="project-description">
+                                Conception complète d'une base de données pour gérer un garage automobile : clients, véhicules, réparations. Modélisation MCD/MLD avec Power AMC et implémentation Microsoft Access.
+                            </p>
+                            <div class="project-tags">
+                                <span class="project-tag">MCD / MLD</span>
+                                <span class="project-tag">Access</span>
+                                <span class="project-tag">SQL</span>
+                                <span class="project-tag">Power AMC</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3 class="project-title">Cook'Up - Anti-gaspi</h3>
+                            <p class="project-subtitle">Sprint Scrum de 3 jours</p>
+                        </div>
+                        <div class="project-body">
+                            <p class="project-description">
+                                Logiciel anti-gaspillage générant des recettes selon les aliments disponibles. Développement en méthodologie agile Scrum avec sprints de 3 jours.
+                            </p>
+                            <div class="project-tags">
+                                <span class="project-tag">Java</span>
+                                <span class="project-tag">Scrum</span>
+                                <span class="project-tag">Agile</span>
+                                <span class="project-tag">JavaFX</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3 class="project-title">Classification de données</h3>
+                            <p class="project-subtitle">Outil de tri intelligent</p>
+                        </div>
+                        <div class="project-body">
+                            <p class="project-description">
+                                Outil Java/JavaFX de classification de données lisible pour l'humain à partir de fichiers CSV. Algorithmes de tri et interface utilisateur intuitive.
+                            </p>
+                            <div class="project-tags">
+                                <span class="project-tag">Java</span>
+                                <span class="project-tag">JavaFX</span>
+                                <span class="project-tag">CSV</span>
+                                <span class="project-tag">Algorithms</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Restons en <span class="highlight">contact</span></h2>
+                    <p class="section-subtitle">N'hésitez pas à me contacter pour discuter de vos projets</p>
+                </div>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <div class="contact-details">
+                                <h3>Email</h3>
+                                <a href="mailto:mickhail.kochiev@yahoo.com">mickhail.kochiev@yahoo.com</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📱</div>
+                            <div class="contact-details">
+                                <h3>Téléphone</h3>
+                                <a href="tel:+33658145392">06 58 14 53 92</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <div class="contact-details">
+                                <h3>Localisation</h3>
+                                <p>Lille, France (59800)</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">💼</div>
+                            <div class="contact-details">
+                                <h3>LinkedIn</h3>
+                                <a href="https://www.linkedin.com/in/mickhail-kochiev-b23165368" target="_blank">linkedin.com/in/mickhail-kochiev</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="background: var(--bg-card); padding: 3rem; border-radius: 12px; border: 1px solid var(--border-color);">
+                            <h3 style="font-size: 2rem; margin-bottom: 1.5rem;">Recherche de stage</h3>
+                            <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem;">
+                                Actuellement en 3ᵉ année de BUT Informatique, je recherche un <strong style="color: var(--accent-primary);">stage en administration systèmes ou réseaux</strong>.
+                            </p>
+                            <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem;">
+                                Mes domaines d'expertise incluent :
+                            </p>
+                            <ul style="color: var(--text-secondary); line-height: 2; margin-left: 1.5rem; margin-bottom: 2rem;">
+                                <li>Administration système Linux</li>
+                                <li>Configuration et sécurisation réseau</li>
+                                <li>Déploiement d'infrastructures</li>
+                                <li>Automatisation et scripting</li>
+                            </ul>
+                            <div class="social-links">
+                                <a href="https://github.com/mickhailkchv" target="_blank" class="social-link" title="GitHub">
+                                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                </a>
+                                <a href="https://mickhailkchv.github.io/Portfolio/" target="_blank" class="social-link" title="Portfolio">
+                                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+                                </a>
+                                <a href="https://www.linkedin.com/in/mickhail-kochiev-b23165368" target="_blank" class="social-link" title="LinkedIn">
+                                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Mickhail Kochiev. Tous droits réservés.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">Développé avec passion à Lille 🚀</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling pour les liens de navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animation au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.skill-category, .timeline-item, .project-card').forEach(el => {
+            el.style.opacity = '0';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
